@@ -2,6 +2,7 @@ package xyz.michaelobi.alcchallenge.presentation.users;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         return new ViewHolder(v);
     }
 
+    private static final String TAG = "UsersAdapter";
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
         User user = users.get(position);
         holder.tvRepositoryCount.setText(user.getPublicRepos() + " public repositories");
         holder.tvUsername.setText(user.getLogin());
@@ -46,11 +49,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
+        Log.e(TAG, "getItemCount: " + users.size());
         return users.size();
     }
 
     public void setUsers(List<User> users) {
+        Log.e(TAG, "setUsers() called with: users = [" + users + "]");
         this.users = users;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

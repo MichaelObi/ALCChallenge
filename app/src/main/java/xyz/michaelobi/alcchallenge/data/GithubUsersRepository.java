@@ -1,6 +1,5 @@
 package xyz.michaelobi.alcchallenge.data;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,12 +23,14 @@ public class GithubUsersRepository implements UsersRepository {
     public Observable<List<User>> getAllLagosJavaDevelopers() {
         String searchQuery = "location:lagos+language:java";
         return Observable.defer(() -> mGithubService.searchUsers(searchQuery)
-                .concatMap(userList -> Observable.from(userList.getUsers()).toList()))
+                .concatMap(userList -> Observable.from(userList.getUsers())
+                        .concatMap(user -> mGithubService.getUser(user.getLogin())).toList()))
                 .retryWhen(observable -> observable.flatMap(o -> {
-                    if (o instanceof IOException) {
-                        return Observable.just(null);
-                    }
-                    return Observable.error(o);
-                }));
+                            if (o instanceof IOException) {
+                                return Observable.just(null);
+                            }
+                            return Observable.error(o);
+                        })
+                );
     }
 }

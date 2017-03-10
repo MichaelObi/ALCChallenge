@@ -2,7 +2,10 @@ package xyz.michaelobi.alcchallenge.presentation.users;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,12 +16,12 @@ import xyz.michaelobi.alcchallenge.Injector;
 import xyz.michaelobi.alcchallenge.R;
 import xyz.michaelobi.alcchallenge.data.remote.model.User;
 
-public class UserListActivity extends AppCompatActivity implements  UsersListMvpContract.View{
+public class UserListActivity extends AppCompatActivity implements UsersListMvpContract.View {
 
     UsersListMvpContract.Presenter presenter;
 
     UsersAdapter mUsersAdapter;
-
+    private Toolbar toolbar;
     private ProgressBar progressBar;
     private RecyclerView recyclerViewUsers;
     private TextView textViewErrorMessage;
@@ -27,14 +30,18 @@ public class UserListActivity extends AppCompatActivity implements  UsersListMvp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        textViewErrorMessage = (TextView) findViewById(R.id.text_view_error_msg);
+        recyclerViewUsers = (RecyclerView) findViewById(R.id.recycler_view_users);
+        recyclerViewUsers.setLayoutManager(new LinearLayoutManager(this));
+
         presenter = new UserListPresenter(Injector.provideUserRepository());
         presenter.attachView(this);
         presenter.getUsers();
         mUsersAdapter = new UsersAdapter(this);
-
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        textViewErrorMessage = (TextView) findViewById(R.id.text_view_error_msg);
-        recyclerViewUsers = (RecyclerView) findViewById(R.id.recycler_view_users);
+        recyclerViewUsers.setAdapter(mUsersAdapter);
     }
 
     @Override
@@ -43,11 +50,14 @@ public class UserListActivity extends AppCompatActivity implements  UsersListMvp
         super.onDestroy();
     }
 
+    private static final String TAG = "UserListActivity";
+
     @Override
     public void showUsers(List<User> users) {
         recyclerViewUsers.setVisibility(View.VISIBLE);
         textViewErrorMessage.setVisibility(View.GONE);
         mUsersAdapter.setUsers(users);
+        Log.e(TAG, "showUsers() called with: users = [" + users + "]");
     }
 
     @Override

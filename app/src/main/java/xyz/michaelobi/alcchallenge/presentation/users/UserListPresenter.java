@@ -1,5 +1,7 @@
 package xyz.michaelobi.alcchallenge.presentation.users;
 
+import android.util.Log;
+
 import java.util.List;
 
 import rx.Subscriber;
@@ -21,6 +23,7 @@ public class UserListPresenter extends BasePresenter<UsersListMvpContract.View> 
         this.userRepository = userRepository;
     }
 
+    private static final String TAG = "UserListPresenter";
     @Override
     public void getUsers() {
         checkViewAttached();
