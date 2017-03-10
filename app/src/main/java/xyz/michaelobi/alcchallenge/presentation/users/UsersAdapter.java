@@ -1,6 +1,7 @@
 package xyz.michaelobi.alcchallenge.presentation.users;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import xyz.michaelobi.alcchallenge.R;
 import xyz.michaelobi.alcchallenge.data.remote.model.User;
+import xyz.michaelobi.alcchallenge.presentation.profile.UserProfileActivity;
 
 /**
  * Created by Michael on 10/03/2017.
@@ -38,6 +40,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     }
 
     private static final String TAG = "UsersAdapter";
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
@@ -59,7 +62,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final ImageView ivAvatar;
         private final TextView tvUsername;
@@ -67,10 +70,17 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             tvRepositoryCount = (TextView) itemView.findViewById(R.id.tv_repo_count);
             tvUsername = (TextView) itemView.findViewById(R.id.tv_username);
             ivAvatar = (ImageView) itemView.findViewById(R.id.iv_avatar);
         }
 
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), UserProfileActivity.class);
+            intent.putExtra("username", tvUsername.getText().toString());
+            view.getContext().startActivity(intent);
+        }
     }
 }

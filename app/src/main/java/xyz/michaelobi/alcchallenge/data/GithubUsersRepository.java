@@ -21,7 +21,7 @@ public class GithubUsersRepository implements UsersRepository {
 
     @Override
     public Observable<List<User>> getAllLagosJavaDevelopers() {
-        String searchQuery = "location:lagos+language:java";
+        String searchQuery = "location:lagos language:java";
         return Observable.defer(() -> mGithubService.searchUsers(searchQuery)
                 .concatMap(userList -> Observable.from(userList.getUsers())
                         .concatMap(user -> mGithubService.getUser(user.getLogin())).toList()))
