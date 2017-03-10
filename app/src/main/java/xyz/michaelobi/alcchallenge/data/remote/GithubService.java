@@ -1,12 +1,11 @@
-package xyz.michaelobi.aclchallenge.data.remote;
+package xyz.michaelobi.alcchallenge.data.remote;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
-import xyz.michaelobi.aclchallenge.data.remote.model.User;
-import xyz.michaelobi.aclchallenge.data.remote.model.UserList;
-import xyz.michaelobi.aclchallenge.presentation.users.UsersListMvpContract;
+import xyz.michaelobi.alcchallenge.data.remote.model.User;
+import xyz.michaelobi.alcchallenge.data.remote.model.UserList;
 
 /**
  * Created by Michael on 10/03/2017.

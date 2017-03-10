@@ -1,9 +1,9 @@
-package xyz.michaelobi.aclchallenge.data;
+package xyz.michaelobi.alcchallenge.data;
 
 import java.util.List;
 
 import rx.Observable;
-import xyz.michaelobi.aclchallenge.data.remote.model.User;
+import xyz.michaelobi.alcchallenge.data.remote.model.User;
 
 /**
  * Created by Michael on 10/03/2017.

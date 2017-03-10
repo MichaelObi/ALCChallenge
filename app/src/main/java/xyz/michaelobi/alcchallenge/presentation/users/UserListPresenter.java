@@ -1,13 +1,12 @@
-package xyz.michaelobi.aclchallenge.presentation.users;
+package xyz.michaelobi.alcchallenge.presentation.users;
 
 import java.util.List;
 
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import xyz.michaelobi.aclchallenge.data.UsersRepository;
-import xyz.michaelobi.aclchallenge.data.remote.model.User;
+import xyz.michaelobi.alcchallenge.data.UsersRepository;
+import xyz.michaelobi.alcchallenge.data.remote.model.User;
 import xyz.michaelobi.mvp.BasePresenter;
 
 /**
@@ -17,6 +16,10 @@ import xyz.michaelobi.mvp.BasePresenter;
 public class UserListPresenter extends BasePresenter<UsersListMvpContract.View> implements UsersListMvpContract.Presenter {
 
     private UsersRepository userRepository;
+
+    public UserListPresenter(UsersRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void getUsers() {

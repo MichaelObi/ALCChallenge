@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_user_list"
+    android:id="@+id/activity_user_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.michaelobi.aclchallenge.presentation.users.UserListActivity">
+    tools:context=".presentation.users.UserListActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_user_search"
+        app:layout_constraintRight_toRightOf="@+id/activity_user_search"
+        app:layout_constraintTop_toTopOf="@+id/activity_user_search">
+
+    </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/recycler_view_users"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_user_search"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_user_search"
+        app:layout_constraintRight_toRightOf="@+id/activity_user_search"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:listitem="@layout/users_list_item">
 
-</LinearLayout>
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/text_view_error_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_view_users"
+        app:layout_constraintLeft_toLeftOf="@+id/toolbar"
+        app:layout_constraintRight_toRightOf="@+id/recycler_view_users"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:text="No Data has loaded"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_user_search"
+        app:layout_constraintLeft_toLeftOf="@+id/recycler_view_users"
+        app:layout_constraintRight_toRightOf="@+id/recycler_view_users"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:visibility="visible"/>
+
+</android.support.constraint.ConstraintLayout>

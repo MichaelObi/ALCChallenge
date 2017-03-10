@@ -1,4 +1,4 @@
-package xyz.michaelobi.aclchallenge;
+package xyz.michaelobi.alcchallenge;
 
 import org.junit.Test;
 

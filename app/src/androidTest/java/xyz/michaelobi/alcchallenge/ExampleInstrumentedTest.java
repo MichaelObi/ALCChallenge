@@ -1,4 +1,4 @@
-package xyz.michaelobi.aclchallenge;
+package xyz.michaelobi.alcchallenge;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

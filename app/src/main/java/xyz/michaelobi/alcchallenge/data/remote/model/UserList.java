@@ -1,4 +1,4 @@
-package xyz.michaelobi.aclchallenge.data.remote.model;
+package xyz.michaelobi.alcchallenge.data.remote.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

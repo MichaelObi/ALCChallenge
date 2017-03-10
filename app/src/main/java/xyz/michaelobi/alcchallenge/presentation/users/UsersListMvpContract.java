@@ -1,8 +1,8 @@
-package xyz.michaelobi.aclchallenge.presentation.users;
+package xyz.michaelobi.alcchallenge.presentation.users;
 
 import java.util.List;
 
-import xyz.michaelobi.aclchallenge.data.remote.model.User;
+import xyz.michaelobi.alcchallenge.data.remote.model.User;
 import xyz.michaelobi.mvp.Mvp;
 
 /**

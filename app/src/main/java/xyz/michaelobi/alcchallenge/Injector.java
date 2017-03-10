@@ -1,10 +1,12 @@
-package xyz.michaelobi.aclchallenge;
+package xyz.michaelobi.alcchallenge;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import xyz.michaelobi.aclchallenge.data.remote.GithubService;
+import xyz.michaelobi.alcchallenge.data.GithubUsersRepository;
+import xyz.michaelobi.alcchallenge.data.UsersRepository;
+import xyz.michaelobi.alcchallenge.data.remote.GithubService;
 
 /**
  * Created by Michael on 10/03/2017.
@@ -42,5 +44,9 @@ public class Injector {
         }
 
         return githubService;
+    }
+
+    public static UsersRepository provideUserRepository() {
+        return new GithubUsersRepository();
     }
 }
