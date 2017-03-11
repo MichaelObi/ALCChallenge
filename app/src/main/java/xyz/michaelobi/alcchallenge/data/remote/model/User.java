@@ -29,6 +29,10 @@ public class User {
     @Expose
     private String email;
 
+    @Expose
+    @SerializedName("name")
+    private String name;
+
     @SerializedName("bio")
     @Expose
     private String bio;
@@ -40,6 +44,10 @@ public class User {
     @SerializedName("created_at")
     @Expose
     private String createdAt;
+
+    @SerializedName("location")
+    @Expose
+    private String location;
 
     public String getLogin() {
         return login;
@@ -103,5 +111,21 @@ public class User {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

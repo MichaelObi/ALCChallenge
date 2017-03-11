@@ -17,6 +17,7 @@ public interface UserProfileContract {
         void showLoading();
 
         void hideLoading();
+
     }
 
     public interface Presenter extends Mvp.Presenter<View> {

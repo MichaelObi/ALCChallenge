@@ -1,11 +1,10 @@
 package xyz.michaelobi.alcchallenge.presentation.users;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,8 +17,8 @@ import xyz.michaelobi.alcchallenge.data.remote.model.User;
 
 public class UserListActivity extends AppCompatActivity implements UsersListMvpContract.View {
 
+    private static final String TAG = "UserListActivity";
     UsersListMvpContract.Presenter presenter;
-
     UsersAdapter mUsersAdapter;
     private Toolbar toolbar;
     private ProgressBar progressBar;
@@ -50,14 +49,11 @@ public class UserListActivity extends AppCompatActivity implements UsersListMvpC
         super.onDestroy();
     }
 
-    private static final String TAG = "UserListActivity";
-
     @Override
     public void showUsers(List<User> users) {
         recyclerViewUsers.setVisibility(View.VISIBLE);
         textViewErrorMessage.setVisibility(View.GONE);
         mUsersAdapter.setUsers(users);
-        Log.e(TAG, "showUsers() called with: users = [" + users + "]");
     }
 
     @Override
