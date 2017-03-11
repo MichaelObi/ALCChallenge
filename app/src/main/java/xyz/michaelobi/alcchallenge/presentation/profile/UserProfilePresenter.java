@@ -1,6 +1,4 @@
-package xyz.michaelobi.alcchallenge.presentation.users;
-
-import java.util.List;
+package xyz.michaelobi.alcchallenge.presentation.profile;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -10,25 +8,24 @@ import xyz.michaelobi.alcchallenge.data.remote.model.User;
 import xyz.michaelobi.mvp.BasePresenter;
 
 /**
- * Created by Michael on 10/03/2017.
+ * Created by Michael on 11/03/2017.
  */
 
-public class UserListPresenter extends BasePresenter<UsersListMvpContract.View> implements UsersListMvpContract.Presenter {
+public class UserProfilePresenter extends BasePresenter<UserProfileContract.View> implements UserProfileContract.Presenter {
 
-    private static final String TAG = "UserListPresenter";
     private UsersRepository userRepository;
 
-    public UserListPresenter(UsersRepository userRepository) {
+    public UserProfilePresenter(UsersRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public void getUsers() {
+    public void getUserProfile(String username) {
         checkViewAttached();
         getView().showLoading();
-        addSubscription(userRepository.getAllLagosJavaDevelopers()
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<User>>() {
+        addSubscription(userRepository.getUserProfile(username)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<User>() {
                     @Override
                     public void onCompleted() {
 
@@ -41,11 +38,10 @@ public class UserListPresenter extends BasePresenter<UsersListMvpContract.View> 
                     }
 
                     @Override
-                    public void onNext(List<User> users) {
+                    public void onNext(User user) {
                         getView().hideLoading();
-                        getView().showUsers(users);
+                        getView().showUserProfile(user);
                     }
-                })
-        );
+                }));
     }
 }

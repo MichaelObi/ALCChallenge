@@ -33,4 +33,16 @@ public class GithubUsersRepository implements UsersRepository {
                         })
                 );
     }
+
+    @Override
+    public Observable<User> getUserProfile(String username) {
+
+        return Observable.defer(() -> mGithubService.getUser(username))
+                .retryWhen(observable -> observable.flatMap(o -> {
+                    if (o instanceof IOException) {
+                        return Observable.just(null);
+                    }
+                    return Observable.error(o);
+                }));
+    }
 }

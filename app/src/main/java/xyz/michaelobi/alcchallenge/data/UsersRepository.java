@@ -12,4 +12,6 @@ import xyz.michaelobi.alcchallenge.data.remote.model.User;
 public interface UsersRepository {
 
     Observable<List<User>> getAllLagosJavaDevelopers();
+
+    Observable<User> getUserProfile(String username);
 }
