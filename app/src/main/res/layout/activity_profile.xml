@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/iv_avatar"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="176dp"
+        android:layout_height="176dp"
         android:layout_alignParentTop="false"
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
@@ -33,7 +33,10 @@
         android:layout_below="@id/iv_avatar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="4dp"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
         android:layout="@id/iv_avatar"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         tools:text="Michael Obi"/>
 
@@ -43,6 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
         android:layout_marginTop="4dp"
         android:layout="@id/iv_avatar"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -56,8 +61,12 @@
         android:layout_below="@id/tv_username"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="4dp"
+        android:textAlignment="center"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
         android:layout="@id/iv_avatar"
         android:maxLines="2"
+        android:ellipsize="end"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         tools:text="Software Engineer, building for Android!"/>
 

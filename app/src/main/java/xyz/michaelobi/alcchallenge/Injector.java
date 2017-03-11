@@ -1,12 +1,11 @@
 package xyz.michaelobi.alcchallenge;
 
-import java.io.IOException;
+import java.io.File;
 
+import okhttp3.Cache;
 import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -38,18 +37,15 @@ public class Injector {
     public static OkHttpClient provideOkHttpClient() {
         if (okHttpClient == null) {
             okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new Interceptor() {
-                        @Override
-                        public Response intercept(Chain chain) throws IOException {
-                            HttpUrl httpUrl = chain.request().url();
-                            HttpUrl newUrl = httpUrl.newBuilder()
-                                    .addQueryParameter("access_token", "0580426c42f7f9b2b915cd6c989315813559375f")
-                                    .build();
-                            Request newRequest = chain.request().newBuilder()
-                                    .url(newUrl)
-                                    .build();
-                            return chain.proceed(newRequest);
-                        }
+                    .addInterceptor(chain -> {
+                        HttpUrl httpUrl = chain.request().url();
+                        HttpUrl newUrl = httpUrl.newBuilder()
+                                .addQueryParameter("access_token", "0580426c42f7f9b2b915cd6c989315813559375f")
+                                .build();
+                        Request.Builder newRequestBuilder = chain.request().newBuilder()
+                                .url(newUrl);
+                        newRequestBuilder.header("Cache-Control", "public, max-age=" + 300);
+                        return chain.proceed(newRequestBuilder.build());
                     }).build();
         }
 

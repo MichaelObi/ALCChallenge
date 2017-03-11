@@ -13,8 +13,7 @@ import xyz.michaelobi.alcchallenge.data.remote.model.UserList;
 
 public interface GithubService {
 
-
-    @GET("/search/users?per_page=10")
+    @GET("/search/users?per_page=20")
     Observable<UserList> searchUsers(@Query("q") String searchTerm);
 
     @GET("/users/{username}")

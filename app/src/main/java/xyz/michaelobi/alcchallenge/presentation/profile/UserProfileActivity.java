@@ -67,12 +67,9 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
     public void showUserProfile(User user) {
         mUser = user;
         invalidateOptionsMenu();
-        btnGitHubLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(user.getHtmlUrl()));
-                startActivity(i);
-            }
+        btnGitHubLink.setOnClickListener(view -> {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(user.getHtmlUrl()));
+            startActivity(i);
         });
         Picasso.with(this).load(user.getAvatarUrl()).into(ivAvatar);
         tvUsername.setText(user.getLogin());

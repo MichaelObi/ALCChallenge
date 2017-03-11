@@ -43,5 +43,6 @@
         app:layout_constraintLeft_toRightOf="@+id/iv_avatar"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_username"
+        android:visibility="visible"
         tools:text="45 public repositories"/>
 </android.support.constraint.ConstraintLayout>
