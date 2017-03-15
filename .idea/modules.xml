@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ACLChallenge.iml" filepath="$PROJECT_DIR$/ACLChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ALCChallenge.iml" filepath="$PROJECT_DIR$/ALCChallenge.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

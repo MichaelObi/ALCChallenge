@@ -66,7 +66,7 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
     @Override
     public void showUserProfile(User user) {
         mUser = user;
-        invalidateOptionsMenu();
+        supportInvalidateOptionsMenu();
         btnGitHubLink.setOnClickListener(view -> {
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(user.getHtmlUrl()));
             startActivity(i);
