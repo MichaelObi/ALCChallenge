@@ -1,11 +1,14 @@
 package xyz.michaelobi.alcchallenge.presentation.users;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,6 +27,7 @@ public class UserListActivity extends AppCompatActivity implements UsersListMvpC
     private ProgressBar progressBar;
     private RecyclerView recyclerViewUsers;
     private TextView textViewErrorMessage;
+    private FrameLayout imgContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class UserListActivity extends AppCompatActivity implements UsersListMvpC
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        imgContainer = (FrameLayout) findViewById(R.id.img_container);
         textViewErrorMessage = (TextView) findViewById(R.id.text_view_error_msg);
         recyclerViewUsers = (RecyclerView) findViewById(R.id.recycler_view_users);
         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(this));
@@ -41,6 +46,15 @@ public class UserListActivity extends AppCompatActivity implements UsersListMvpC
         presenter.getUsers();
         mUsersAdapter = new UsersAdapter(this);
         recyclerViewUsers.setAdapter(mUsersAdapter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            recyclerViewUsers.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    imgContainer.setTranslationY(recyclerView.computeVerticalScrollOffset() * 0.5f);
+                }
+            });
+        }
     }
 
     @Override
@@ -76,4 +90,5 @@ public class UserListActivity extends AppCompatActivity implements UsersListMvpC
         recyclerViewUsers.setVisibility(View.VISIBLE);
         textViewErrorMessage.setVisibility(View.GONE);
     }
+
 }

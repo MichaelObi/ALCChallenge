@@ -22,6 +22,8 @@ public class Injector {
     private static Retrofit retrofitInstance;
     private static GithubService githubService;
 
+
+
     public static Retrofit provideRetrofit() {
         if (retrofitInstance == null) {
             Retrofit.Builder retrofit = new Retrofit.Builder().client(Injector.provideOkHttpClient())
